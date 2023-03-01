@@ -10,6 +10,8 @@ defmodule PlateSlateWeb.Graphql.Resolvers.PlaceOrderResolver do
         {:ok, %{errors: Utils.transform_errors(changeset)}}
 
       {:ok, order} ->
+        Absinthe.Subscription.publish(PlateSlateWeb.Endpoint, order, new_order: "*")
+
         # this is because menu_item is a basic type. We don't need to return a map
         {:ok, order}
     end
