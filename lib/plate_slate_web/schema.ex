@@ -2,6 +2,7 @@ defmodule PlateSlateWeb.Schema do
   @moduledoc false
 
   use Absinthe.Schema
+  use Absinthe.Relay.Schema, :modern
 
   alias PlateSlateWeb.Middlewares
   alias PlateSlateWeb.Dataloader
@@ -52,7 +53,6 @@ defmodule PlateSlateWeb.Schema do
 
   import_types(PlateSlateWeb.Graphql.Payloads.SignupPayload)
   import_types(PlateSlateWeb.Graphql.Payloads.LoginPayload)
-  import_types(PlateSlateWeb.Graphql.Payloads.MenuPayload)
   import_types(PlateSlateWeb.Graphql.Payloads.SearchPayload)
   import_types(PlateSlateWeb.Graphql.Payloads.CreateMenuItemPayload)
   import_types(PlateSlateWeb.Graphql.Payloads.PlaceOrderPayload)
