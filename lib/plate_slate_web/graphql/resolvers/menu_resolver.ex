@@ -1,5 +1,5 @@
-defmodule Graphql.Resolvers.Menu do
-  @moduledoc "Resolvers for Menu"
+defmodule PlateSlateWeb.Graphql.Resolvers.MenuResolver do
+  @moduledoc false
   alias PlateSlate.Menu
 
   def menu_items(_, args, _) do
