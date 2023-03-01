@@ -4,9 +4,6 @@ defmodule PlateSlateWeb.Graphql.Queries.MenuQuery do
   use Absinthe.Schema.Notation
   alias PlateSlateWeb.Graphql.Resolvers.MenuResolver
 
-  import_types(PlateSlateWeb.Graphql.InputTypes.MenuItemFilter)
-  import_types(PlateSlateWeb.Graphql.Payloads.MenuPayload)
-
   object :menu_query do
     @desc "Get a menu of items"
     field :menu, :menu_payload do
