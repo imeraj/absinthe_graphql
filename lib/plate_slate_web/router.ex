@@ -25,10 +25,12 @@ defmodule PlateSlateWeb.Router do
 
     forward "/api", Absinthe.Plug, schema: PlateSlateWeb.Schema, socket: PlateSlateWeb.UserSocket
 
-    forward "/graphiql", Absinthe.Plug.GraphiQL,
-      schema: PlateSlateWeb.Schema,
-      interface: :simple,
-      socket: PlateSlateWeb.UserSocket
+    # GraphiQL did not work. Had to use `ws://localhost:4000/socket` from web `http://localhost:4000/graphiql`
+    # to get subscription working
+    forward "/graphiql",
+            Absinthe.Plug.GraphiQL,
+            schema: PlateSlateWeb.Schema,
+            socket: PlateSlateWeb.UserSocket
   end
 
   # Enables LiveDashboard only for development
