@@ -31,6 +31,16 @@ defmodule PlateSlate.Menu do
     |> Repo.all()
   end
 
+  def categories_by_id(_, ids) do
+    query = from c in Category, where: c.id in ^Enum.uniq(ids)
+
+    query
+    |> Repo.all()
+    |> Map.new(fn category ->
+      {category.id, category}
+    end)
+  end
+
   def search(term), do: Enum.flat_map(@search, &do_search(&1, "%#{term}%"))
 
   defp do_search(model, pattern) when model in @search do
