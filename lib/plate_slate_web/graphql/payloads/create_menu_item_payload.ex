@@ -4,11 +4,18 @@ defmodule PlateSlateWeb.Graphql.Payloads.CreateMenuItemPayload do
   use Absinthe.Schema.Notation
 
   @desc "Menu Item payload"
-  object :create_menu_item_payload do
-    field :menu_item, :menu_item do
-      resolve(fn menu_item, _, _ ->
-        {:ok, menu_item}
-      end)
-    end
+  union :create_menu_item_payload do
+    types([:menu_item, :errors])
+
+    resolve_type(fn
+      %PlateSlate.Menu.Item{}, _ ->
+        :menu_item
+
+      %{errors: _}, _ ->
+        :errors
+
+      _, _ ->
+        nil
+    end)
   end
 end

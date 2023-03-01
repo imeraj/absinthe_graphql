@@ -6,6 +6,7 @@ defmodule PlateSlateWeb.Schema do
 
   import_types(PlateSlateWeb.Graphql.Types.Enums.SortOrderEnum)
 
+  import_types(PlateslateWeb.Graphql.Types.Error)
   import_types(PlateSlateWeb.Graphql.Types.MenuItemType)
   import_types(PlateSlateWeb.Graphql.Types.CategoryType)
 
