@@ -5,7 +5,7 @@ defmodule PlateSlateWeb.Graphql.Mutations.NewOrderSubscription do
   alias PlateSlateWeb.Graphql.Resolvers.NewOrderResolver
 
   object :new_order_subscription do
-    @desc "New order"
+    @desc "New order subscription"
     field :new_order, :order do
       config(fn _args, _info ->
         {:ok, topic: "*"}
