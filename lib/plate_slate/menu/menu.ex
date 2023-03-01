@@ -21,6 +21,12 @@ defmodule PlateSlate.Menu do
 
   def list_items(args) do
     args
+    |> items_query()
+    |> Repo.all()
+  end
+
+  defp items_query(args) do
+    args
     |> Enum.reduce(Item, fn
       {:order, order}, query ->
         from q in query, order_by: {^order, :name}
@@ -28,7 +34,6 @@ defmodule PlateSlate.Menu do
       {:filter, filter}, query ->
         filter_with(query, filter)
     end)
-    |> Repo.all()
   end
 
   def categories_by_id(_, ids) do
@@ -79,4 +84,11 @@ defmodule PlateSlate.Menu do
           where: ilike(t.name, ^"%#{tag_name}%")
     end)
   end
+
+  # dataloader support
+  def data, do: Dataloader.Ecto.new(Repo, query: &query/2)
+
+  defp query(Item, args), do: items_query(args)
+
+  defp query(queryable, _), do: queryable
 end
