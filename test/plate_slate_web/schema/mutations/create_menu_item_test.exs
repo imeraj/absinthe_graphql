@@ -22,10 +22,16 @@ defmodule PlateSlateWeb.Schema.Mutations.CreateMenuTest do
   @query """
   mutation CreateMenuItem($menuItem: CreateMenuItemInput!) {
     createMenuItem(input: $menuItem) {
-      menuItem {
+      ... on MenuItem {
         name
         description
         price
+      }
+      ... on Errors {
+        errors {
+          key
+          message
+        }
       }
     }
   }
@@ -43,11 +49,9 @@ defmodule PlateSlateWeb.Schema.Mutations.CreateMenuTest do
     assert %{
              "data" => %{
                "createMenuItem" => %{
-                 "menuItem" => %{
-                   "description" => "Raost beef, caramelized onions, ...",
-                   "name" => "French Dip",
-                   "price" => "5.75"
-                 }
+                 "description" => "Raost beef, caramelized onions, ...",
+                 "name" => "French Dip",
+                 "price" => "5.75"
                }
              }
            } = json_response(conn, 200)
@@ -65,13 +69,11 @@ defmodule PlateSlateWeb.Schema.Mutations.CreateMenuTest do
     conn = post(conn, "/api", query: @query, variables: %{"menuItem" => menu_item})
 
     assert %{
-             "data" => %{"createMenuItem" => nil},
-             "errors" => [
-               %{
-                 "message" => "could not create menu item",
-                 "path" => ["createMenuItem"]
+             "data" => %{
+               "createMenuItem" => %{
+                 "errors" => [%{"key" => "name", "message" => "has already been taken"}]
                }
-             ]
+             }
            } = json_response(conn, 200)
   end
 end
