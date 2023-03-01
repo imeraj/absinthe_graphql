@@ -2,7 +2,9 @@ defmodule PlateSlateWeb.Schema do
   @moduledoc false
 
   use Absinthe.Schema
+
   alias PlateSlateWeb.Middlewares
+  alias PlateSlateWeb.Dataloader
 
   import_types(PlateSlateWeb.Graphql.Types.Scalars.Date)
   import_types(PlateSlateWeb.Graphql.Types.Scalars.Decimal)
@@ -44,6 +46,10 @@ defmodule PlateSlateWeb.Schema do
   import_types(PlateSlateWeb.Graphql.Payloads.PlaceOrderPayload)
   import_types(PlateSlateWeb.Graphql.Payloads.ReadyOrderPayload)
   import_types(PlateSlateWeb.Graphql.Payloads.CompleteOrderPayload)
+
+  def context(ctx), do: Map.put(ctx, :loader, Dataloader.dataloader())
+
+  def plugins, do: [Absinthe.Middleware.Dataloader | Absinthe.Plugin.defaults()]
 
   def middleware(middleware, field, object) do
     middleware
