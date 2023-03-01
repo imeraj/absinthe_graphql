@@ -1,6 +1,8 @@
 defmodule PlateSlateWeb.Router do
   use PlateSlateWeb, :router
 
+  alias PlateSlateWeb.Plugs.AdminAuth
+
   pipeline :browser do
     plug :accepts, ["html"]
     plug :fetch_session
@@ -15,6 +17,10 @@ defmodule PlateSlateWeb.Router do
     plug PlateSlateWeb.Plugs.Context
   end
 
+  pipeline :admin_auth do
+    plug PlateSlateWeb.AdminAuth
+  end
+
   scope "/", PlateSlateWeb do
     pipe_through :browser
 
@@ -24,7 +30,13 @@ defmodule PlateSlateWeb.Router do
   scope "/admin", PlateSlateWeb do
     pipe_through :browser
 
-    resources "/items", ItemController
+    resources "/session", SessionController, only: [:new, :create, :delete], singleton: true
+  end
+
+  scope "/admin", PlateSlateWeb do
+    pipe_through [:browser, AdminAuth]
+
+    resources "/items", ItemController, only: [:index]
   end
 
   scope "/" do
