@@ -8,6 +8,13 @@ defmodule PlateSlateWeb.Authentication do
   end
 
   def verify(token) do
-    Phoenix.Token.verify(PlateSlateWeb.Endpoint, @user_salt, token, max_age: 365 * 24 * 3600)
+    with {:ok, data} <-
+           Phoenix.Token.verify(PlateSlateWeb.Endpoint, @user_salt, token,
+             max_age: 365 * 24 * 3600
+           ) do
+      {:ok, get_user(data)}
+    end
   end
+
+  defp get_user(%{id: id, role: role}), do: PlateSlate.Accounts.lookup(role, id)
 end
