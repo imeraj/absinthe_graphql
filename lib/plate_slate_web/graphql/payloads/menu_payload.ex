@@ -3,8 +3,6 @@ defmodule PlateSlateWeb.Graphql.Payloads.MenuPayload do
 
   use Absinthe.Schema.Notation
 
-  import_types(PlateSlateWeb.Graphql.Types.MenuItemType)
-
   @desc "Menu items payload"
   object :menu_payload do
     field :menu_items, non_null(list_of(:menu_item)) do
