@@ -6,7 +6,7 @@ defmodule PlateSlateWeb.Graphql.Types.OrderType do
   @desc "An order"
   object :order do
     field :id, non_null(:id)
-    field :customer_number, non_null(:string)
+    field :customer_id, non_null(:integer)
     field :items, non_null(list_of(non_null(:order_item)))
     field :state, non_null(:string)
   end
