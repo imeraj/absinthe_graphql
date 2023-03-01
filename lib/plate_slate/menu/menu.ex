@@ -11,6 +11,12 @@ defmodule PlateSlate.Menu do
 
   @search [Item, Category]
 
+  def create_item(attrs \\ %{}) do
+    %Item{}
+    |> Item.changeset(attrs)
+    |> Repo.insert()
+  end
+
   def list_items(args) do
     args
     |> Enum.reduce(Item, fn
