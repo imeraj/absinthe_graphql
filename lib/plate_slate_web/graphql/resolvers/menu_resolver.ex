@@ -3,6 +3,6 @@ defmodule PlateSlateWeb.Graphql.Resolvers.MenuResolver do
   alias PlateSlate.Menu
 
   def menu_items(_, args, _) do
-    {:ok, Menu.menu_items(args)}
+    {:ok, Menu.list_items(args)}
   end
 end
