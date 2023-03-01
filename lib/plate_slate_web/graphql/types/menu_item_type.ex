@@ -14,11 +14,27 @@ defmodule PlateSlateWeb.Graphql.Types.MenuItemType do
     field :price, non_null(:decimal), description: "Menu item price"
     field :added_on, non_null(:date), description: "Menu item added on date"
 
+    @doc """
+    Async version
+    """
+
+    #    field :category, :category do
+    #      resolve(fn menu_item, _, _ ->
+    #        async(fn ->
+    #          query = Ecto.assoc(menu_item, :category)
+    #          {:ok, PlateSlate.Repo.one(query)}
+    #        end)
+    #      end)
+    #    end
+
+    @doc """
+    Batch version
+    """
     field :category, :category do
       resolve(fn menu_item, _, _ ->
-        async(fn ->
-          query = Ecto.assoc(menu_item, :category)
-          {:ok, PlateSlate.Repo.one(query)}
+        batch({PlateSlate.Menu, :categories_by_id}, menu_item.category_id, fn
+          categories ->
+            {:ok, Map.get(categories, menu_item.category_id)}
         end)
       end)
     end
