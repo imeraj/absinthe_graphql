@@ -20,13 +20,18 @@ defmodule PlateSlateWeb.Schema do
 
   import_types(PlateSlateWeb.Graphql.Mutations.CreateMenuItemMutation)
   import_types(PlateSlateWeb.Graphql.Mutations.PlaceOrderMutation)
+  import_types(PlateSlateWeb.Graphql.Mutations.ReadyOrderMutation)
+  import_types(PlateSlateWeb.Graphql.Mutations.CompleteOrderMutation)
 
   import_types(PlateSlateWeb.Graphql.Mutations.NewOrderSubscription)
+  import_types(PlateSlateWeb.Graphql.Mutations.UpdateOrderSubscription)
 
   import_types(PlateSlateWeb.Graphql.Payloads.MenuPayload)
   import_types(PlateSlateWeb.Graphql.Payloads.SearchPayload)
   import_types(PlateSlateWeb.Graphql.Payloads.CreateMenuItemPayload)
   import_types(PlateSlateWeb.Graphql.Payloads.PlaceOrderPayload)
+  import_types(PlateSlateWeb.Graphql.Payloads.ReadyOrderPayload)
+  import_types(PlateSlateWeb.Graphql.Payloads.CompleteOrderPayload)
 
   query do
     import_fields(:menu_query)
@@ -36,9 +41,12 @@ defmodule PlateSlateWeb.Schema do
   mutation do
     import_fields(:create_menu_item_mutation)
     import_fields(:place_order_mutation)
+    import_fields(:ready_order_mutation)
+    import_fields(:complete_order_mutation)
   end
 
   subscription do
     import_fields(:new_order_subscription)
+    import_fields(:update_order_subscription)
   end
 end
