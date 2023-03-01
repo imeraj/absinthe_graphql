@@ -1,13 +1,12 @@
 defmodule PlateSlateWeb.Schema do
   use Absinthe.Schema
 
-  alias PlateSlate.{Menu, Repo}
+  alias Graphql.Resolvers
 
   query do
     field :menu_items, list_of(:menu_item), description: "List of available menu items" do
-      resolve(fn _, _, _ ->
-        {:ok, Repo.all(Menu.Item)}
-      end)
+      arg(:matching, :string, description: "Filters for menu items")
+      resolve(&Resolvers.Menu.menu_items/3)
     end
   end
 
