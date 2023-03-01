@@ -52,4 +52,26 @@ defmodule PlateSlateWeb.Schema.Mutations.CreateMenuTest do
              }
            } = json_response(conn, 200)
   end
+
+  test "createMenuItem with an existing name fails", %{category_id: category_id, conn: conn} do
+    menu_item = %{
+      "name" => "French Dip",
+      "description" => "Raost beef, caramelized onions, ...",
+      "price" => 5.75,
+      "category_id" => category_id
+    }
+
+    conn = post(conn, "/api", query: @query, variables: %{"menuItem" => menu_item})
+    conn = post(conn, "/api", query: @query, variables: %{"menuItem" => menu_item})
+
+    assert %{
+             "data" => %{"createMenuItem" => nil},
+             "errors" => [
+               %{
+                 "message" => "could not create menu item",
+                 "path" => ["createMenuItem"]
+               }
+             ]
+           } = json_response(conn, 200)
+  end
 end
