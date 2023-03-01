@@ -1,6 +1,10 @@
 defmodule PlateSlateWeb.Schema.Query.MenuItemsTest do
   use PlateSlateWeb.ConnCase, async: true
 
+  setup _ do
+    PlateSlate.Seeds.run()
+  end
+
   @query """
   {
     menuItems {
@@ -9,10 +13,8 @@ defmodule PlateSlateWeb.Schema.Query.MenuItemsTest do
     }
   }
   """
-
-  test "menuItems field returns menu items" do
-    conn = build_conn()
-    conn = post conn, "/api", query: @query
+  test "menuItems field returns menu items", %{conn: conn} do
+    conn = post(conn, "/api", query: @query)
 
     assert %{
              "data" => %{
@@ -21,5 +23,24 @@ defmodule PlateSlateWeb.Schema.Query.MenuItemsTest do
                ]
              }
            } = json_response(conn, 200)
+  end
+
+  @query """
+  {
+    menuItems(matching: "reu") {
+      name
+    }
+  }
+  """
+  test "menuItems field returns menu items filtered by name", %{conn: conn} do
+    response = post(conn, "/api", query: @query)
+
+    assert %{
+             "data" => %{
+               "menuItems" => [
+                 %{"name" => "Reuben"}
+               ]
+             }
+           } = json_response(response, 200)
   end
 end
