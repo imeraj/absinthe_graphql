@@ -21,6 +21,12 @@ defmodule PlateSlateWeb.Router do
     get "/", PageController, :index
   end
 
+  scope "/admin", PlateSlateWeb do
+    pipe_through :browser
+
+    resources "/items", ItemController
+  end
+
   scope "/" do
     pipe_through :api
 
