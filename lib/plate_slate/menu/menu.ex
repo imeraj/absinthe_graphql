@@ -7,6 +7,9 @@ defmodule PlateSlate.Menu do
 
   alias PlateSlate.Repo
   alias PlateSlate.Menu.Item
+  alias PlateSlate.Menu.Category
+
+  @search [Item, Category]
 
   def list_items(args) do
     args
@@ -20,7 +23,17 @@ defmodule PlateSlate.Menu do
     |> Repo.all()
   end
 
-  def filter_with(query, filter) do
+  def search(term), do: Enum.flat_map(@search, &do_search(&1, "%#{term}%"))
+
+  defp do_search(model, pattern) when model in @search do
+    query =
+      from q in model,
+        where: ilike(q.name, ^pattern) or ilike(q.description, ^pattern)
+
+    Repo.all(query)
+  end
+
+  defp filter_with(query, filter) do
     Enum.reduce(filter, query, fn
       {:name, name}, query ->
         from q in query, where: ilike(q.name, ^"%#{name}%")
