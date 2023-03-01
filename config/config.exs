@@ -8,7 +8,8 @@
 import Config
 
 config :plate_slate,
-  ecto_repos: [PlateSlate.Repo]
+  ecto_repos: [PlateSlate.Repo],
+  secret_feature_flag: true
 
 # Configures the endpoint
 config :plate_slate, PlateSlateWeb.Endpoint,
