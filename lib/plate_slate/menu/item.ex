@@ -5,7 +5,7 @@ defmodule PlateSlate.Menu.Item do
   alias PlateSlate.Menu.Item
 
   schema "items" do
-    field :added_on, :date
+    field :added_on, :date, default: NaiveDateTime.to_date(NaiveDateTime.utc_now())
     field :description, :string
     field :name, :string
     field :price, :decimal
@@ -20,8 +20,8 @@ defmodule PlateSlate.Menu.Item do
   @doc false
   def changeset(%Item{} = item, attrs) do
     item
-    |> cast(attrs, [:name, :description, :price, :added_on])
-    |> validate_required([:name, :price])
+    |> cast(attrs, [:name, :description, :price, :category_id])
+    |> validate_required([:name, :price, :category_id])
     |> foreign_key_constraint(:category)
   end
 end
