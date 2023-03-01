@@ -1,4 +1,4 @@
-defmodule PlateSlateWeb.Schame.Subscription.NewOrderTest do
+defmodule PlateSlateWeb.Schema.Subscriptions.NewOrderTest do
   use PlateSlateWeb.SubscriptionCase
 
   setup do
