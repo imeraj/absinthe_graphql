@@ -21,6 +21,8 @@ defmodule PlateSlateWeb.Schema do
   import_types(PlateSlateWeb.Graphql.Mutations.CreateMenuItemMutation)
   import_types(PlateSlateWeb.Graphql.Mutations.PlaceOrderMutation)
 
+  import_types(PlateSlateWeb.Graphql.Mutations.NewOrderSubscription)
+
   import_types(PlateSlateWeb.Graphql.Payloads.MenuPayload)
   import_types(PlateSlateWeb.Graphql.Payloads.SearchPayload)
   import_types(PlateSlateWeb.Graphql.Payloads.CreateMenuItemPayload)
@@ -34,5 +36,9 @@ defmodule PlateSlateWeb.Schema do
   mutation do
     import_fields(:create_menu_item_mutation)
     import_fields(:place_order_mutation)
+  end
+
+  subscription do
+    import_fields(:new_order_subscription)
   end
 end
