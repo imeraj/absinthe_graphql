@@ -2,12 +2,15 @@ defmodule PlateSlateWeb.Graphql.Types.MenuItemType do
   @moduledoc false
 
   use Absinthe.Schema.Notation
+  use Absinthe.Relay.Schema.Notation, :modern
 
   import Ecto.Query, warn: false
   import Absinthe.Resolution.Helpers, only: [async: 1, batch: 3]
   import Absinthe.Resolution.Helpers, only: [on_load: 2]
 
   alias PlateSlate.Menu
+
+  connection(node_type: :menu_item)
 
   @desc "A menu item"
   object :menu_item do

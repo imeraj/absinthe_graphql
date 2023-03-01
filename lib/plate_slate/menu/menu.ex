@@ -25,7 +25,7 @@ defmodule PlateSlate.Menu do
     |> Repo.all()
   end
 
-  defp items_query(args) do
+  def items_query(args) do
     args
     |> Enum.reduce(Item, fn
       {:order, order}, query ->
@@ -33,6 +33,9 @@ defmodule PlateSlate.Menu do
 
       {:filter, filter}, query ->
         filter_with(query, filter)
+
+      _, query ->
+        query
     end)
   end
 

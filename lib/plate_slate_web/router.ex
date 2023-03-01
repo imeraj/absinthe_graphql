@@ -18,7 +18,7 @@ defmodule PlateSlateWeb.Router do
   end
 
   pipeline :admin_auth do
-    plug PlateSlateWeb.AdminAuth
+    plug PlateSlateWeb.Plugs.AdminAuth
   end
 
   scope "/", PlateSlateWeb do
