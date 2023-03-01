@@ -24,4 +24,6 @@ defmodule PlateSlate.Accounts do
         {:error, "incorrect email or password"}
     end
   end
+
+  def lookup(role, id), do: Repo.get_by(User, role: to_string(role), id: id)
 end
