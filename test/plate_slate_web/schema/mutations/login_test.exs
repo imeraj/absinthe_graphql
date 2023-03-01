@@ -32,7 +32,8 @@ defmodule PlateSlateWeb.Schema.Mutations.LoginTest do
     assert %{"name" => user.name} ==
              user_data
 
-    assert {:ok, %{id: user.id, role: user.role}} ==
-             PlateSlateWeb.Authentication.verify(token)
+    assert {:ok, verified_user} = PlateSlateWeb.Authentication.verify(token)
+    assert user.id == verified_user.id
+    assert user.role == verified_user.role
   end
 end
