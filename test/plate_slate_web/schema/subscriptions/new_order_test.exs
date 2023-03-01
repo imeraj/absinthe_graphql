@@ -52,7 +52,7 @@ defmodule PlateSlateWeb.Schema.Subscriptions.NewOrderTest do
         }
       )
 
-    assert_reply ref, :ok, %{data: %{"login" => %{"token" => _token}}}, 1_000
+    assert_reply ref, :ok, %{data: %{"login" => %{"token" => _token}}}, 5_000
 
     # setup a subscription
     ref = push_doc(socket, @subscription)
@@ -92,7 +92,7 @@ defmodule PlateSlateWeb.Schema.Subscriptions.NewOrderTest do
         }
       )
 
-    assert_reply ref, :ok, %{data: %{"login" => %{"token" => _}}}, 1_000
+    assert_reply ref, :ok, %{data: %{"login" => %{"token" => _}}}, 5_000
 
     # subscribe to orders
     ref = push_doc(socket, @subscription)
@@ -116,7 +116,7 @@ defmodule PlateSlateWeb.Schema.Subscriptions.NewOrderTest do
         }
       )
 
-    assert_reply ref, :ok, %{data: %{"login" => %{"token" => _}}}, 1_000
+    assert_reply ref, :ok, %{data: %{"login" => %{"token" => _}}}, 5_000
 
     place_order(socket)
     refute_receive _

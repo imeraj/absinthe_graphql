@@ -9,7 +9,8 @@ defmodule PlateSlateWeb.Graphql.Directives.FeatureFlagDirective do
 
     expand(fn
       %{flag: flag}, node ->
-        case Application.get_env(:plate_slate, :secret_feature_flag, false) do
+        # should not use to_atom in prod code
+        case Application.get_env(:plate_slate, String.to_atom(flag), false) do
           true ->
             node
 

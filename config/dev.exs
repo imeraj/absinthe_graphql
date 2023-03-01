@@ -2,8 +2,8 @@ import Config
 
 # Configure your database
 config :plate_slate, PlateSlate.Repo,
-  username: "postgres",
-  password: "postgres",
+  username: "meraj",
+  password: "",
   hostname: "localhost",
   database: "plate_slate_dev",
   stacktrace: true,
