@@ -3,14 +3,28 @@ defmodule PlateSlateWeb.UserSocket do
   use Absinthe.Phoenix.Socket, schema: PlateSlateWeb.Schema
 
   @doc """
-  For graphql subscription to work must implement below callbacks
+  For graphql subscriptions to work must implement below callbacks
   """
 
   @impl true
-  def connect(_params, socket, _connect_info) do
+  def connect(params, socket, _connect_info) do
+    socket =
+      Absinthe.Phoenix.Socket.put_options(socket,
+        context: %{current_user: find_current_user(params)}
+      )
+
     {:ok, socket}
   end
 
   @impl true
   def id(_socket), do: nil
+
+  defp find_current_user(params) do
+    with "Bearer " <> token <- params["Authorization"],
+         {:ok, user} <- PlateSlateWeb.Authentication.verify(token) do
+      user
+    else
+      _ -> %{}
+    end
+  end
 end
