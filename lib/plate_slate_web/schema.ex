@@ -6,6 +6,18 @@ defmodule PlateSlateWeb.Schema do
   alias PlateSlateWeb.Middlewares
   alias PlateSlateWeb.Dataloader
 
+  # required for directives
+  import_types(Absinthe.Phoenix.Types)
+
+  directive :put do
+    on([:field, :fragment_spread, :inline_fragment])
+
+    expand(fn
+      _, node ->
+        Absinthe.Blueprint.put_flag(node, :put, __MODULE__)
+    end)
+  end
+
   import_types(PlateSlateWeb.Graphql.Types.Scalars.Date)
   import_types(PlateSlateWeb.Graphql.Types.Scalars.Decimal)
 
