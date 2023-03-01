@@ -1,5 +1,8 @@
 defmodule PlateSlateWeb.Schema do
+  @moduledoc false
+
   use Absinthe.Schema
+  alias PlateSlateWeb.Middlewares.ChangesetErrors
 
   import_types(PlateSlateWeb.Graphql.Types.Scalars.Date)
   import_types(PlateSlateWeb.Graphql.Types.Scalars.Decimal)
@@ -32,6 +35,14 @@ defmodule PlateSlateWeb.Schema do
   import_types(PlateSlateWeb.Graphql.Payloads.PlaceOrderPayload)
   import_types(PlateSlateWeb.Graphql.Payloads.ReadyOrderPayload)
   import_types(PlateSlateWeb.Graphql.Payloads.CompleteOrderPayload)
+
+  def middleware(middleware, _field, %{identifier: :mutation}) do
+    middleware ++ [ChangesetErrors]
+  end
+
+  def middleware(middleware, _field, _object) do
+    middleware
+  end
 
   query do
     import_fields(:menu_query)
