@@ -18,7 +18,8 @@ defmodule PlateSlateWeb.Graphql.Types.MenuItemType do
     field :name, non_null(:string), description: "Menu item name"
     field :description, :string, description: "Menu item description"
     field :price, non_null(:decimal), description: "Menu item price"
-    field :added_on, non_null(:date), description: "Menu item added on date"
+
+    field :added_on, :date, description: "Menu item added on date"
 
     #    @doc """
     #    Async version
@@ -51,6 +52,8 @@ defmodule PlateSlateWeb.Graphql.Types.MenuItemType do
     """
 
     field :category, :category do
+      directive(:feature_flag, flag: "secret_feature_flag")
+
       resolve(fn menu_item, _, %{context: %{loader: loader}} ->
         loader
         |> Dataloader.load(Menu, :category, menu_item)

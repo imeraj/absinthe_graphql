@@ -10,6 +10,8 @@ defmodule PlateSlateWeb.Schema do
   # required for directives
   import_types(Absinthe.Phoenix.Types)
 
+  @prototype_schema PlateSlateWeb.Graphql.Directives.FeatureFlagDirective
+
   directive :put do
     on([:field, :fragment_spread, :inline_fragment])
 
@@ -18,6 +20,9 @@ defmodule PlateSlateWeb.Schema do
         Absinthe.Blueprint.put_flag(node, :put, __MODULE__)
     end)
   end
+
+  # required for linter (commented out: cause it also checks libraries and treat warnings as errors
+  # @pipeline_modifier AbsintheLinter
 
   import_types(PlateSlateWeb.Graphql.Types.Scalars.Date)
   import_types(PlateSlateWeb.Graphql.Types.Scalars.Decimal)
