@@ -51,7 +51,9 @@ defmodule PlateSlate.MixProject do
       {:absinthe, "~> 1.7"},
       {:absinthe_plug, "~> 1.5"},
       {:absinthe_phoenix, "~> 2.0"},
-      {:absinthe_relay, "~> 1.5"}
+      {:absinthe_relay, "~> 1.5"},
+      {:comeonin_ecto_password, "~> 3.0"},
+      {:pbkdf2_elixir, "~> 1.0"}
     ]
   end
 
