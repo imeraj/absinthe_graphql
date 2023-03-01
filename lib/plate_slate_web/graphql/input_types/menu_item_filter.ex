@@ -20,5 +20,11 @@ defmodule PlateSlateWeb.Graphql.InputTypes.MenuItemFilter do
 
     @desc "Priced below a value"
     field :price_below, :float
+
+    @desc "Added to the menu before this date"
+    field :added_before, :date
+
+    @desc "Added to the menu after this date"
+    field :added_after, :date
   end
 end
