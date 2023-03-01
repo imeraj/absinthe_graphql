@@ -1,4 +1,4 @@
-defmodule PlateslateWeb.Graphql.Types.Error do
+defmodule PlateSlateWeb.Graphql.Types.Error do
   use Absinthe.Schema.Notation
 
   @desc "mutation errors"
