@@ -1,7 +1,9 @@
 defmodule PlateSlate.Ordering.Order do
   use Ecto.Schema
   import Ecto.Changeset
+
   alias PlateSlate.Ordering.Order
+  alias PlateSlate.Accounts.User
 
   schema "orders" do
     field :customer_number, :integer, read_after_writes: true
@@ -9,6 +11,7 @@ defmodule PlateSlate.Ordering.Order do
     field :state, :string
 
     embeds_many(:items, PlateSlate.Ordering.Item, on_replace: :delete)
+    belongs_to :customer, User
 
     timestamps()
   end
