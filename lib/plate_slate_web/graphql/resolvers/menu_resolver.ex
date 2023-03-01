@@ -3,6 +3,10 @@ defmodule PlateSlateWeb.Graphql.Resolvers.MenuResolver do
   alias PlateSlate.Menu
 
   def menu_items(_, args, _) do
-    {:ok, Menu.list_items(args)}
+    Absinthe.Relay.Connection.from_query(
+      Menu.items_query(args),
+      &PlateSlate.Repo.all/1,
+      args
+    )
   end
 end
