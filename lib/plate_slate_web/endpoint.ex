@@ -11,6 +11,11 @@ defmodule PlateSlateWeb.Endpoint do
     signing_salt: "UpkA1IAd"
   ]
 
+  # this must be here for subscription to work
+  socket "/socket", PlateSlateWeb.UserSocket,
+    websocket: [connect_info: [:peer_data]],
+    longpoll: false
+
   socket "/live", Phoenix.LiveView.Socket, websocket: [connect_info: [session: @session_options]]
 
   # Serve at "/" the static files from "priv/static" directory.
