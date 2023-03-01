@@ -9,7 +9,7 @@ defmodule PlateSlate.Ordering do
   alias PlateSlate.Menu.Item
   alias PlateSlate.Ordering.Order
 
-  def get_order!(id), do: Repo.get!(Order, id)
+  def get_order(id), do: Repo.get(Order, id)
 
   def create_order(attrs \\ %{}) do
     attrs = Map.update(attrs, :items, [], &build_items/1)
