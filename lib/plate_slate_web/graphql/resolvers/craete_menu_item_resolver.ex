@@ -4,8 +4,8 @@ defmodule PlateSlateWeb.Graphql.Resolvers.CreateMenuItemResolver do
 
   def create_menu_item(_, %{input: params}, _) do
     case Menu.create_item(params) do
-      {:errror, _} ->
-        {:error, "could not create menu items"}
+      {:error, _} ->
+        {:error, "could not create menu item"}
 
       {:ok, _} = success ->
         success
