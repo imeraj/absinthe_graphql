@@ -7,7 +7,7 @@ defmodule PlateSlateWeb.Graphql.Payloads.MenuPayload do
 
   @desc "Menu items payload"
   object :menu_payload do
-    field :menu_items, list_of(:menu_item) do
+    field :menu_items, non_null(list_of(:menu_item)) do
       resolve(fn menu_item, _, _ ->
         {:ok, menu_item}
       end)
