@@ -8,7 +8,7 @@ defmodule PlateSlate.Ordering.Order do
     field :ordered_at, :naive_datetime, read_after_writes: true
     field :state, :string
 
-    embeds_many(:items, PlateSlate.Ordering.Item)
+    embeds_many(:items, PlateSlate.Ordering.Item, on_replace: :delete)
 
     timestamps()
   end

@@ -4,8 +4,9 @@ defmodule PlateSlate.Ordering do
   """
 
   import Ecto.Query, warn: false
-  alias PlateSlate.Repo
 
+  alias PlateSlate.Repo
+  alias PlateSlate.Menu.Item
   alias PlateSlate.Ordering.Order
 
   def create_order(attrs \\ %{}) do
@@ -18,8 +19,13 @@ defmodule PlateSlate.Ordering do
 
   defp build_items(items) do
     for item <- items do
-      menu_item = PlateSlate.Menu.get_item!(item.menu_item_id)
-      %{name: menu_item.name, quantity: item.quantity, price: menu_item.price}
+      case PlateSlate.Menu.get_item(item.menu_item_id) do
+        %Item{} = menu_item ->
+          %{name: menu_item.name, quantity: item.quantity, price: menu_item.price}
+
+        nil ->
+          %{}
+      end
     end
   end
 end
