@@ -2,6 +2,7 @@ defmodule PlateSlateWeb.Graphql.Types.MenuItemType do
   @moduledoc false
 
   import Ecto.Query, warn: false
+  import Absinthe.Resolution.Helpers, only: [async: 1]
 
   use Absinthe.Schema.Notation
 
@@ -15,8 +16,10 @@ defmodule PlateSlateWeb.Graphql.Types.MenuItemType do
 
     field :category, :category do
       resolve(fn menu_item, _, _ ->
-        query = Ecto.assoc(menu_item, :category)
-        {:ok, PlateSlate.Repo.one(query)}
+        async(fn ->
+          query = Ecto.assoc(menu_item, :category)
+          {:ok, PlateSlate.Repo.one(query)}
+        end)
       end)
     end
   end
