@@ -7,12 +7,14 @@ defmodule PlateSlateWeb.Graphql.Queries.MenuQueryTest do
 
   @query """
   {
-    menu {
-      menuItems {
-        id
-        name
+      menuItems(first: 100) {
+        edges {
+          node {
+            id
+            name
+          }
+        }
       }
-    }
   }
   """
   test "menuItems field returns menu items", %{conn: conn} do
@@ -20,20 +22,18 @@ defmodule PlateSlateWeb.Graphql.Queries.MenuQueryTest do
 
     assert %{
              "data" => %{
-               "menu" => %{
-                 "menuItems" => [
-                   %{"name" => "Bánh mì", "id" => _} | _
-                 ]
-               }
+               "menuItems" => %{"edges" => [%{"node" => %{"name" => "Bánh mì"}} | _]}
              }
            } = json_response(conn, 200)
   end
 
   @query """
   query($filter: MenuItemFilter) {
-    menu(filter: $filter) {
-      menuItems {
-        name
+    menuItems(filter: $filter, first: 100) {
+      edges {
+        node {
+          name
+        }
       }
     }
   }
@@ -44,23 +44,21 @@ defmodule PlateSlateWeb.Graphql.Queries.MenuQueryTest do
 
     assert %{
              "data" => %{
-               "menu" => %{
-                 "menuItems" => [
-                   %{"name" => "Reuben"}
-                 ]
-               }
+               "menuItems" => %{"edges" => [%{"node" => %{"name" => "Reuben"}}]}
              }
            } = json_response(response, 200)
   end
 
   @query """
   query($order: SortOrder!) {
-    menu(order: $order) {
-      menuItems {
-        name
+      menuItems(order: $order, first: 100) {
+        edges {
+          node {
+            name
+          }
+        }
       }
     }
-  }
   """
   @variables %{"order" => "DESC"}
   test "menuItems field returns menu items descending by name", %{conn: conn} do
@@ -68,20 +66,18 @@ defmodule PlateSlateWeb.Graphql.Queries.MenuQueryTest do
 
     assert %{
              "data" => %{
-               "menu" => %{
-                 "menuItems" => [
-                   %{"name" => "Water"} | _
-                 ]
-               }
+               "menuItems" => %{"edges" => [%{"node" => %{"name" => "Water"}} | _]}
              }
            } = json_response(response, 200)
   end
 
   @query """
   query ($filter: MenuItemFilter)	{
-    menu(filter: $filter)	{
-      menuItems {
-        name
+    menuItems(filter: $filter, first: 100)	{
+      edges {
+        node {
+          name
+        }
   	  }
     }
   }
@@ -92,21 +88,19 @@ defmodule PlateSlateWeb.Graphql.Queries.MenuQueryTest do
 
     assert %{
              "data" => %{
-               "menu" => %{
-                 "menuItems" => [
-                   %{"name" => "Vada Pav"} | _
-                 ]
-               }
+               "menuItems" => %{"edges" => [%{"node" => %{"name" => "Vada Pav"}}]}
              }
            } = json_response(response, 200)
   end
 
   @query """
   query ($filter: MenuItemFilter)	{
-    menu(filter: $filter)	{
-      menuItems {
-        name
-        addedOn
+    menuItems(filter: $filter, first: 100)	{
+      edges {
+        node {
+          name
+          addedOn
+        }
   	  }
     }
   }
@@ -125,23 +119,23 @@ defmodule PlateSlateWeb.Graphql.Queries.MenuQueryTest do
 
     response = post(conn, "/api", query: @query, variables: @variables)
 
-    %{
-      "data" => %{
-        "menu" => %{
-          "menuItems" => [
-            %{"name" => "Garlic Fries", "addedOn" => "2017-01-01"} | _
-          ]
-        }
-      }
-    } = json_response(response, 200)
+    assert %{
+             "data" => %{
+               "menuItems" => %{
+                 "edges" => [%{"node" => %{"addedOn" => "2017-01-01", "name" => "Garlic Fries"}}]
+               }
+             }
+           } = json_response(response, 200)
   end
 
   @query """
   query ($filter: MenuItemFilter)	{
-    menu(filter: $filter)	{
-      menuItems {
-        name
-        addedOn
+    menuItems(filter: $filter)	{
+      edges {
+        node {
+          name
+          addedOn
+        }
   	  }
     }
   }
