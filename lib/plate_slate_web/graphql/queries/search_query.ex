@@ -4,9 +4,8 @@ defmodule PlateSlateWeb.Graphql.Queries.SearchQuery do
   use Absinthe.Schema.Notation
   alias PlateSlateWeb.Graphql.Resolvers.SearchResolver
 
-   @desc "search menu items or category"
+  @desc "search menu items or category"
   object :search_query do
-
     field :search, non_null(list_of(:search_payload)) do
       arg(:matching, non_null(:string), description: "Filter for menu items")
 
