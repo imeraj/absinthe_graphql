@@ -14,12 +14,15 @@ defmodule PlateSlate.Accounts do
   end
 
   def authenticate(role, email, password) do
-    user = Repo.get_by(User, role: to_string(role), email: email)
-
-    with %{password: digest} <- user,
+    with {:user, user} when not is_nil(user) <-
+           {:user, Repo.get_by(User, role: to_string(role), email: email)},
+         %{password: digest} <- user,
          true <- Password.valid?(password, digest) do
       {:ok, user}
     else
+      {:user, _} ->
+        {:error, "incorrect role"}
+
       _ ->
         {:error, "incorrect email or password"}
     end

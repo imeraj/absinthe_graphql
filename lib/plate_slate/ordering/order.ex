@@ -7,7 +7,7 @@ defmodule PlateSlate.Ordering.Order do
 
   schema "orders" do
     field :ordered_at, :naive_datetime, read_after_writes: true
-    field :state, :string
+    field :state, :string, default: "created"
 
     embeds_many(:items, Item, on_replace: :delete)
     belongs_to :customer, User
