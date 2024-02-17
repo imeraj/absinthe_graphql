@@ -5,7 +5,7 @@ defmodule PlateSlate.MixProject do
     [
       app: :plate_slate,
       version: "0.1.0",
-      elixir: "~> 1.14.3",
+      elixir: "~> 1.16.1",
       elixirc_paths: elixirc_paths(Mix.env()),
       start_permanent: Mix.env() == :prod,
       aliases: aliases(),
@@ -34,7 +34,7 @@ defmodule PlateSlate.MixProject do
     [
       {:phoenix, "~> 1.6.15"},
       {:phoenix_ecto, "~> 4.4"},
-      {:ecto_sql, "~> 3.6"},
+      {:ecto_sql, "~> 3.11"},
       {:postgrex, ">= 0.0.0"},
       {:phoenix_html, "~> 3.0"},
       {:phoenix_live_reload, "~> 1.2", only: :dev},

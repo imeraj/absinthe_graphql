@@ -2,7 +2,7 @@ import Config
 
 # Configure your database
 config :plate_slate, PlateSlate.Repo,
-  username: "meraj",
+  username: "postgres",
   password: "",
   hostname: "localhost",
   database: "plate_slate_dev",
