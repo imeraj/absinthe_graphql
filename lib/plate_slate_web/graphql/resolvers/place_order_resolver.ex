@@ -18,7 +18,7 @@ defmodule PlateSlateWeb.Graphql.Resolvers.PlaceOrderResolver do
         new_order: [order.customer_id, "*"]
       )
 
-      # this is because menu_item is a basic type. We don't need to return a map
+      # this is because order is a basic type. We don't need to return a map
       {:ok, order}
     end
   end
