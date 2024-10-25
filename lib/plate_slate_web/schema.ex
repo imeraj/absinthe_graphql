@@ -35,7 +35,7 @@ defmodule PlateSlateWeb.Schema do
   import_types(PlateSlateWeb.Graphql.Types.MenuItemType)
   import_types(PlateSlateWeb.Graphql.Types.CategoryType)
   import_types(PlateSlateWeb.Graphql.Types.OrderType)
-  import_types(PlateSlateWeb.Schema.Types.SessionType)
+  import_types(PlateSlateWeb.Graphql.Types.SessionType)
 
   import_types(PlateSlateWeb.Graphql.InputTypes.MenuItemFilter)
   import_types(PlateSlateWeb.Graphql.InputTypes.SignupInput)

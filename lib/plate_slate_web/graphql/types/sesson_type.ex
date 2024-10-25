@@ -1,4 +1,4 @@
-defmodule PlateSlateWeb.Schema.Types.SessionType do
+defmodule PlateSlateWeb.Graphql.Types.SessionType do
   @moduledoc false
 
   use Absinthe.Schema.Notation
