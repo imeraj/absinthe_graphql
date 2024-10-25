@@ -8,6 +8,8 @@ To start your Phoenix server:
 
 Now you can visit [`http://localhost:4000/graphiql`](http://localhost:4000/graphiql) from your browser.
 
+Link to medium article [here](https://itnext.io/an-opinionated-way-of-organizing-graphql-apis-using-absinthe-and-phoenix-97f1c60eeac6). 
+
 Ready to run in production? Please [check our deployment guides](https://hexdocs.pm/phoenix/deployment.html).
 
 ## Learn more
