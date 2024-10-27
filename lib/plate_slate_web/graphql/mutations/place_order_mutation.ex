@@ -2,6 +2,8 @@ defmodule PlateSlateWeb.Graphql.Mutations.PlaceOrderMutation do
   @moduledoc false
 
   use Absinthe.Schema.Notation
+  import_types(PlateSlateWeb.Graphql.Payloads.PlaceOrderPayload)
+  import_types(PlateSlateWeb.Graphql.InputTypes.PlaceOrderInput)
 
   alias PlateSlateWeb.Graphql.Resolvers.PlaceOrderResolver
 

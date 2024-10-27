@@ -2,6 +2,8 @@ defmodule PlateSlateWeb.Graphql.Mutations.CompleteOrderMutation do
   @moduledoc false
 
   use Absinthe.Schema.Notation
+  import_types(PlateSlateWeb.Graphql.Payloads.CompleteOrderPayload)
+
   alias PlateSlateWeb.Graphql.Resolvers.CompleteOrderResolver
 
   object :complete_order_mutation do

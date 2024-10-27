@@ -3,6 +3,7 @@ defmodule PlateSlateWeb.Graphql.Queries.MenuQuery do
 
   use Absinthe.Schema.Notation
   use Absinthe.Relay.Schema.Notation, :modern
+  import_types(PlateSlateWeb.Graphql.InputTypes.MenuItemFilter)
 
   alias PlateSlateWeb.Graphql.Resolvers.MenuResolver
 

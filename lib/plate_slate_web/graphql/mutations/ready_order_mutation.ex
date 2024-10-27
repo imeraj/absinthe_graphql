@@ -2,6 +2,8 @@ defmodule PlateSlateWeb.Graphql.Mutations.ReadyOrderMutation do
   @moduledoc false
 
   use Absinthe.Schema.Notation
+  import_types(PlateSlateWeb.Graphql.Payloads.ReadyOrderPayload)
+
   alias PlateSlateWeb.Graphql.Resolvers.ReadyOrderResolver
 
   object :ready_order_mutation do

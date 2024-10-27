@@ -24,12 +24,6 @@ defmodule PlateSlateWeb.Schema do
   import_types(PlateSlateWeb.Graphql.Types.OrderType)
   import_types(PlateSlateWeb.Graphql.Types.SessionType)
 
-  import_types(PlateSlateWeb.Graphql.InputTypes.MenuItemFilter)
-  import_types(PlateSlateWeb.Graphql.InputTypes.SignupInput)
-  import_types(PlateSlateWeb.Graphql.InputTypes.LoginInput)
-  import_types(PlateSlateWeb.Graphql.InputTypes.CreateMenuItemInput)
-  import_types(PlateSlateWeb.Graphql.InputTypes.PlaceOrderInput)
-
   import_types(PlateSlateWeb.Graphql.Queries.MenuQuery)
   import_types(PlateSlateWeb.Graphql.Queries.SearchQuery)
 
@@ -42,14 +36,6 @@ defmodule PlateSlateWeb.Schema do
 
   import_types(PlateSlateWeb.Graphql.Subscriptions.NewOrderSubscription)
   import_types(PlateSlateWeb.Graphql.Subscriptions.UpdateOrderSubscription)
-
-  import_types(PlateSlateWeb.Graphql.Payloads.SignupPayload)
-  import_types(PlateSlateWeb.Graphql.Payloads.LoginPayload)
-  import_types(PlateSlateWeb.Graphql.Payloads.SearchPayload)
-  import_types(PlateSlateWeb.Graphql.Payloads.CreateMenuItemPayload)
-  import_types(PlateSlateWeb.Graphql.Payloads.PlaceOrderPayload)
-  import_types(PlateSlateWeb.Graphql.Payloads.ReadyOrderPayload)
-  import_types(PlateSlateWeb.Graphql.Payloads.CompleteOrderPayload)
 
   def context(ctx), do: Map.put(ctx, :loader, Dataloader.dataloader())
 

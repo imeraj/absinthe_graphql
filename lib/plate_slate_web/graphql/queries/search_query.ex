@@ -2,6 +2,8 @@ defmodule PlateSlateWeb.Graphql.Queries.SearchQuery do
   @moduledoc false
 
   use Absinthe.Schema.Notation
+  import_types(PlateSlateWeb.Graphql.Payloads.SearchPayload)
+
   alias PlateSlateWeb.Graphql.Resolvers.SearchResolver
 
   @desc "search menu items or category"

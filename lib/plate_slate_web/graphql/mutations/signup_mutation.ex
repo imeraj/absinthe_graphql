@@ -2,6 +2,9 @@ defmodule PlateSlateWeb.Graphql.Mutations.SignupMutation do
   @moduledoc false
 
   use Absinthe.Schema.Notation
+  import_types(PlateSlateWeb.Graphql.Payloads.SignupPayload)
+  import_types(PlateSlateWeb.Graphql.InputTypes.SignupInput)
+
   alias PlateSlateWeb.Graphql.Resolvers.SignupResolver
 
   object :signup_mutation do

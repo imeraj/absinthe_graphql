@@ -2,6 +2,9 @@ defmodule PlateSlateWeb.Graphql.Mutations.LoginMutation do
   @moduledoc false
 
   use Absinthe.Schema.Notation
+  import_types(PlateSlateWeb.Graphql.Payloads.LoginPayload)
+  import_types(PlateSlateWeb.Graphql.InputTypes.LoginInput)
+
   alias PlateSlateWeb.Graphql.Resolvers.LoginResolver
 
   object :login_mutation do

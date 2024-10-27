@@ -2,6 +2,8 @@ defmodule PlateSlateWeb.Graphql.Mutations.CreateMenuItemMutation do
   @moduledoc false
 
   use Absinthe.Schema.Notation
+  import_types(PlateSlateWeb.Graphql.Payloads.CreateMenuItemPayload)
+  import_types(PlateSlateWeb.Graphql.InputTypes.CreateMenuItemInput)
 
   alias PlateSlateWeb.Graphql.Resolvers.CreateMenuItemResolver
 
