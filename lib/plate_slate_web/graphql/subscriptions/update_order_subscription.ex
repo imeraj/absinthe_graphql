@@ -1,4 +1,4 @@
-defmodule PlateSlateWeb.Graphql.Mutations.UpdateOrderSubscription do
+defmodule PlateSlateWeb.Graphql.Subscriptions.UpdateOrderSubscription do
   @moduledoc false
 
   use Absinthe.Schema.Notation

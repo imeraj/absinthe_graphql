@@ -1,4 +1,4 @@
-defmodule PlateSlateWeb.Schema.Mutations.CreateMenuTest do
+defmodule PlateSlateWeb.Schema.Mutations.CreateMenuItemTest do
   use PlateSlateWeb.ConnCase, async: true
 
   alias PlateSlate.Fixtures

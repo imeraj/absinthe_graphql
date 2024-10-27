@@ -1,4 +1,4 @@
-defmodule PlateSlateWeb.Graphql.Mutations.NewOrderSubscription do
+defmodule PlateSlateWeb.Graphql.Subscriptions.NewOrderSubscription do
   @moduledoc false
 
   use Absinthe.Schema.Notation
@@ -20,8 +20,6 @@ defmodule PlateSlateWeb.Graphql.Mutations.NewOrderSubscription do
         end
       end)
 
-      # this is not required here but if custom resolver is needed,
-      # this is how it's implemented
       resolve(&NewOrderResolver.new_order/3)
     end
   end

@@ -9,20 +9,7 @@ defmodule PlateSlateWeb.Schema do
 
   # required for directives
   import_types(Absinthe.Phoenix.Types)
-
   @prototype_schema PlateSlateWeb.Graphql.Directives.FeatureFlagDirective
-
-  directive :put do
-    on([:field, :fragment_spread, :inline_fragment])
-
-    expand(fn
-      _, node ->
-        Absinthe.Blueprint.put_flag(node, :put, __MODULE__)
-    end)
-  end
-
-  # required for linter (commented out: cause it also checks libraries and treat warnings as errors
-  # @pipeline_modifier AbsintheLinter
 
   import_types(PlateSlateWeb.Graphql.Types.Scalars.Date)
   import_types(PlateSlateWeb.Graphql.Types.Scalars.Decimal)
@@ -53,8 +40,8 @@ defmodule PlateSlateWeb.Schema do
   import_types(PlateSlateWeb.Graphql.Mutations.ReadyOrderMutation)
   import_types(PlateSlateWeb.Graphql.Mutations.CompleteOrderMutation)
 
-  import_types(PlateSlateWeb.Graphql.Mutations.NewOrderSubscription)
-  import_types(PlateSlateWeb.Graphql.Mutations.UpdateOrderSubscription)
+  import_types(PlateSlateWeb.Graphql.Subscriptions.NewOrderSubscription)
+  import_types(PlateSlateWeb.Graphql.Subscriptions.UpdateOrderSubscription)
 
   import_types(PlateSlateWeb.Graphql.Payloads.SignupPayload)
   import_types(PlateSlateWeb.Graphql.Payloads.LoginPayload)
