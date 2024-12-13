@@ -4,6 +4,9 @@ defmodule PlateSlateWeb.Schema do
   use Absinthe.Schema
   use Absinthe.Relay.Schema, :modern
 
+  # disabled currently as it does not have ways to ignore library codes
+  # @pipeline_modifier AbsintheLinter
+
   alias PlateSlateWeb.Middlewares
   alias PlateSlateWeb.Dataloader
 
