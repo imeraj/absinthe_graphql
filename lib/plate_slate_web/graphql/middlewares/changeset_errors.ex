@@ -5,7 +5,7 @@ defmodule PlateSlateWeb.Middlewares.ChangesetErrors do
 
   def call(resolution, _) do
     with %{errors: [%Ecto.Changeset{} = changeset]} <- resolution do
-      %{resolution | value: %{errors: transform_errors(changeset)}, errors: []}
+      %{resolution | errors: transform_errors(changeset)}
     end
   end
 

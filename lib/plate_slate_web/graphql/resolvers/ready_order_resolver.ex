@@ -9,7 +9,7 @@ defmodule PlateSlateWeb.Graphql.Resolvers.ReadyOrderResolver do
          {:ok, order} <- Ordering.update_order(order, %{state: "ready"}) do
       {:ok, order}
     else
-      nil -> {:error, "invalid ID"}
+      nil -> {:error, %{key: "id", message: "invalid ID"}}
     end
   end
 end
