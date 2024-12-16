@@ -55,7 +55,8 @@ defmodule PlateSlate.MixProject do
       {:comeonin_ecto_password, "~> 3.0"},
       {:pbkdf2_elixir, "~> 1.0"},
       {:dataloader, "~> 1.0"},
-      {:absinthe_linter, "~> 0.1.0"}
+      {:absinthe_linter, "~> 0.1.0"},
+      {:sobelow, "~> 0.13", only: [:dev, :test], runtime: false}
     ]
   end
 
