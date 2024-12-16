@@ -74,12 +74,17 @@ defmodule PlateSlateWeb.Schema.Mutations.CreateMenuItemTest do
     conn = post(conn, "/api", query: @query, variables: %{"menuItem" => menu_item})
 
     assert %{
-             "data" => %{
-               "createMenuItem" => %{
-                 "errors" => [%{"key" => "name", "message" => "has already been taken"}]
+             "data" => %{"createMenuItem" => nil},
+             "errors" => [
+               %{
+                 "key" => "name",
+                 "locations" => [%{"column" => 3, "line" => 2}],
+                 "message" => ["has already been taken"],
+                 "path" => ["createMenuItem"]
                }
-             }
-           } = json_response(conn, 200)
+             ]
+           } =
+             json_response(conn, 200)
   end
 
   test "createMenuItem with unauthorized user fails", %{category_id: category_id} do
