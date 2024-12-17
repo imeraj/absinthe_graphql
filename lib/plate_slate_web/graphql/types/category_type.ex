@@ -17,6 +17,9 @@ defmodule PlateSlateWeb.Graphql.Types.CategoryType do
     field :items, list_of(:menu_item), description: "Menu items for category" do
       arg(:filter, :menu_item_filter)
       arg(:order, :sort_order, default_value: :asc)
+
+      # can pass additional arguments with {:category, args)
+      # see - https://hexdocs.pm/absinthe/Absinthe.Resolution.Helpers.html#dataloader/3-options
       resolve(dataloader(Menu, :items))
     end
   end

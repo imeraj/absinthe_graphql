@@ -58,6 +58,8 @@ defmodule PlateSlateWeb.Graphql.Types.MenuItemType do
         loader
         |> Dataloader.load(Menu, :category, menu_item)
         |> on_load(fn loader ->
+          # can pass additional arguments with {:category, args)
+          # see - https://hexdocs.pm/absinthe/Absinthe.Resolution.Helpers.html#dataloader/3-options
           category = Dataloader.get(loader, Menu, :category, menu_item)
           {:ok, category}
         end)
