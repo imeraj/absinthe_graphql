@@ -8,7 +8,6 @@ defmodule PlateSlateWeb.Plugs.Context do
 
   def call(conn, _) do
     context = build_context(conn)
-
     Absinthe.Plug.put_options(conn, context: context)
   end
 

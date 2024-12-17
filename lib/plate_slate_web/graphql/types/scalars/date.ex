@@ -11,8 +11,6 @@ defmodule PlateSlateWeb.Graphql.Types.Scalars.Date do
       end
     end)
 
-    serialize(fn date ->
-      Date.to_iso8601(date)
-    end)
+    serialize(&Date.to_iso8601/1)
   end
 end
