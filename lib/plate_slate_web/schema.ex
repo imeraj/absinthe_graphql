@@ -40,10 +40,16 @@ defmodule PlateSlateWeb.Schema do
   import_types(PlateSlateWeb.Graphql.Subscriptions.NewOrderSubscription)
   import_types(PlateSlateWeb.Graphql.Subscriptions.UpdateOrderSubscription)
 
+  @impl Absinthe.Schema
   def context(ctx), do: Map.put(ctx, :loader, Dataloader.dataloader())
 
-  def plugins, do: [Absinthe.Middleware.Dataloader | Absinthe.Plugin.defaults()]
+  @impl Absinthe.Schema
+  def plugins,
+    do:
+      [PlateSlateWeb.Plugins.AuthorizeIntrospection, Absinthe.Middleware.Dataloader] ++
+        Absinthe.Plugin.defaults()
 
+  @impl Absinthe.Schema
   def middleware(middleware, field, object) do
     middleware
     |> apply(:errors, field, object)
