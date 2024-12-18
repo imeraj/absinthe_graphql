@@ -21,6 +21,26 @@ defmodule PlateSlate.Application do
       {Absinthe.Subscription, pubsub: PlateSlateWeb.Endpoint}
     ]
 
+    # enable OpentelemetryAbsinthe. Configuration in config.exs
+    OpentelemetryAbsinthe.setup()
+
+    # Sample attachment to event (for testing do from `iex` console)
+    #    :telemetry.attach_many(
+    #      :plate_slate_web_graphql,
+    #      [
+    #        [:opentelemetry_absinthe, :graphql, :handled]
+    #      ],
+    #      fn event_name, measurements, metadata, _config ->
+    #        %{
+    #          event_name: event_name,
+    #          measurements: measurements,
+    #          metadata: metadata
+    #        }
+    #        |> IO.inspect()
+    #      end,
+    #      []
+    #    )
+
     # See https://hexdocs.pm/elixir/Supervisor.html
     # for other strategies and supported options
     opts = [strategy: :one_for_one, name: PlateSlate.Supervisor]

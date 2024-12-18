@@ -18,6 +18,16 @@ config :plate_slate, PlateSlateWeb.Endpoint,
   pubsub_server: PlateSlate.PubSub,
   live_view: [signing_salt: "NzAZxdS4"]
 
+config :opentelemetry_absinthe,
+  trace_options: [
+    trace_request_query: true,
+    trace_request_type: true,
+    trace_response_error: true,
+    trace_request_variables: true,
+    trace_subscriptions: true,
+    trace_request_variables: true
+  ]
+
 # Configures the mailer
 #
 # By default it uses the "Local" adapter which stores the emails
