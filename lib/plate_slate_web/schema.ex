@@ -44,8 +44,14 @@ defmodule PlateSlateWeb.Schema do
   def context(ctx), do: Map.put(ctx, :loader, Dataloader.dataloader())
 
   @impl Absinthe.Schema
-  def plugins,
-    do: [Absinthe.Middleware.Dataloader | Absinthe.Plugin.defaults()]
+  def plugins do
+    if Mix.env() not in [:test] do
+      [PlateSlateWeb.Plugins.AuthorizeIntrospection, Absinthe.Middleware.Dataloader] ++
+        Absinthe.Plugin.defaults()
+    else
+      [Absinthe.Middleware.Dataloader] ++ Absinthe.Plugin.defaults()
+    end
+  end
 
   @impl Absinthe.Schema
   def middleware(middleware, field, object) do
