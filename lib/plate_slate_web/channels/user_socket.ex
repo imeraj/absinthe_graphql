@@ -10,7 +10,7 @@ defmodule PlateSlateWeb.UserSocket do
   def connect(params, socket, _connect_info) do
     socket =
       Absinthe.Phoenix.Socket.put_options(socket,
-        context: %{current_user: find_current_user(params)}
+        context: build_context(params)
       )
 
     {:ok, socket}
@@ -19,10 +19,10 @@ defmodule PlateSlateWeb.UserSocket do
   @impl true
   def id(_socket), do: nil
 
-  defp find_current_user(params) do
+  defp build_context(params) do
     with "Bearer " <> token <- params["Authorization"],
          {:ok, user} <- PlateSlateWeb.Authentication.verify(token) do
-      user
+      %{current_user: user}
     else
       _ -> %{}
     end

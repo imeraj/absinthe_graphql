@@ -45,9 +45,7 @@ defmodule PlateSlateWeb.Schema do
 
   @impl Absinthe.Schema
   def plugins,
-    do:
-      [PlateSlateWeb.Plugins.AuthorizeIntrospection, Absinthe.Middleware.Dataloader] ++
-        Absinthe.Plugin.defaults()
+    do: [Absinthe.Middleware.Dataloader | Absinthe.Plugin.defaults()]
 
   @impl Absinthe.Schema
   def middleware(middleware, field, object) do
