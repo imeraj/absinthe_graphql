@@ -7,7 +7,7 @@ defmodule PlateSlateWeb.Schema do
   # disabled currently as it does not have ways to ignore library codes
   # @pipeline_modifier AbsintheLinter
 
-  alias PlateSlateWeb.Middlewares
+  alias PlateSlateWeb.Graphql.Middlewares
   alias PlateSlateWeb.Dataloader
 
   # required for directives
@@ -46,7 +46,7 @@ defmodule PlateSlateWeb.Schema do
     |> Absinthe.Pipeline.for_document(options)
     |> Absinthe.Pipeline.insert_after(
          Absinthe.Phase.Document.Complexity.Analysis,
-         PlateSlateWeb.Phases.LogComplexity
+         PlateSlateWeb.Graphql.Phases.LogComplexity
        )
   end
 
@@ -56,7 +56,7 @@ defmodule PlateSlateWeb.Schema do
   @impl Absinthe.Schema
   def plugins do
     if Mix.env() not in [:test] do
-      [PlateSlateWeb.Plugins.AuthorizeIntrospection, Absinthe.Middleware.Dataloader] ++
+      [PlateSlateWeb.Graphql.Plugins.AuthorizeIntrospection, Absinthe.Middleware.Dataloader] ++
         Absinthe.Plugin.defaults()
     else
       [Absinthe.Middleware.Dataloader] ++ Absinthe.Plugin.defaults()

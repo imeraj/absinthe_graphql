@@ -1,4 +1,4 @@
-defmodule PlateSlateWeb.Middlewares.ChangesetErrors do
+defmodule PlateSlateWeb.Graphql.Middlewares.ChangesetErrors do
   @moduledoc false
 
   @behaviour Absinthe.Middleware

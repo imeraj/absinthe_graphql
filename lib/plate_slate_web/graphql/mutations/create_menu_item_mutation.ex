@@ -11,7 +11,7 @@ defmodule PlateSlateWeb.Graphql.Mutations.CreateMenuItemMutation do
     @desc "Create menu item"
     field :create_menu_item, :create_menu_item_payload do
       arg(:input, non_null(:create_menu_item_input))
-      middleware(PlateSlateWeb.Middlewares.Authorize, "employee")
+      middleware(PlateSlateWeb.Graphql.Middlewares.Authorize, "employee")
       resolve(&CreateMenuItemResolver.create_menu_item/3)
     end
   end

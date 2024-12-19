@@ -1,4 +1,4 @@
-defmodule PlateSlateWeb.Middlewares.Authorize do
+defmodule PlateSlateWeb.Graphql.Middlewares.Authorize do
   @moduledoc false
 
   @behaviour Absinthe.Middleware

@@ -1,4 +1,4 @@
-defmodule PlateSlateWeb.Plugins.AuthorizeIntrospection do
+defmodule PlateSlateWeb.Graphql.Plugins.AuthorizeIntrospection do
   @moduledoc """
   Disable or restrict schema introspection to authorized requests
   """

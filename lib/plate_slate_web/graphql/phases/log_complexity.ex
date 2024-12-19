@@ -1,4 +1,4 @@
-defmodule PlateSlateWeb.Phases.LogComplexity do
+defmodule PlateSlateWeb.Graphql.Phases.LogComplexity do
   @moduledoc """
   This phase is used to log complexity of a document.
   Source: https://maartenvanvliet.nl/2018/09/07/writing-an-absinthe-phase/

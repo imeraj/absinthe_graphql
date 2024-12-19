@@ -1,4 +1,4 @@
-defmodule PlateSlateWeb.Middlewares.Debug do
+defmodule PlateSlateWeb.Graphql.Middlewares.Debug do
   @moduledoc false
 
   @behaviour Absinthe.Middleware
