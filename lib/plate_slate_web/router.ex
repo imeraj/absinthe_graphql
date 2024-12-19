@@ -46,15 +46,19 @@ defmodule PlateSlateWeb.Router do
       schema: PlateSlateWeb.Schema,
       socket: PlateSlateWeb.UserSocket,
       analyze_complexity: true,
-      max_complexity: 50
+      max_complexity: 50,
+      pipeline: {__MODULE__, :pipeline}
 
     forward "/graphiql",
             Absinthe.Plug.GraphiQL,
             schema: PlateSlateWeb.Schema,
             socket: PlateSlateWeb.UserSocket,
             analyze_complexity: true,
-            max_complexity: 50
+            max_complexity: 50,
+            pipeline: {__MODULE__, :pipeline}
   end
+
+  defdelegate pipeline(config, options \\ []), to: PlateSlateWeb.Schema
 
   # Enables LiveDashboard only for development
   #
