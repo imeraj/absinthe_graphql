@@ -42,12 +42,18 @@ defmodule PlateSlateWeb.Router do
   scope "/" do
     pipe_through :api
 
-    forward "/api", Absinthe.Plug, schema: PlateSlateWeb.Schema, socket: PlateSlateWeb.UserSocket
+    forward "/api", Absinthe.Plug,
+      schema: PlateSlateWeb.Schema,
+      socket: PlateSlateWeb.UserSocket,
+      analyze_complexity: true,
+      max_complexity: 50
 
     forward "/graphiql",
             Absinthe.Plug.GraphiQL,
             schema: PlateSlateWeb.Schema,
-            socket: PlateSlateWeb.UserSocket
+            socket: PlateSlateWeb.UserSocket,
+            analyze_complexity: true,
+            max_complexity: 50
   end
 
   # Enables LiveDashboard only for development
