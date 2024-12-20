@@ -40,14 +40,13 @@ defmodule PlateSlateWeb.Schema do
   import_types(PlateSlateWeb.Graphql.Subscriptions.NewOrderSubscription)
   import_types(PlateSlateWeb.Graphql.Subscriptions.UpdateOrderSubscription)
 
-
   def pipeline(config, options \\ []) do
     config.schema_mod
     |> Absinthe.Pipeline.for_document(options)
     |> Absinthe.Pipeline.insert_after(
-         Absinthe.Phase.Document.Complexity.Analysis,
-         PlateSlateWeb.Graphql.Phases.LogComplexity
-       )
+      Absinthe.Phase.Document.Complexity.Analysis,
+      PlateSlateWeb.Graphql.Phases.LogComplexity
+    )
   end
 
   @impl Absinthe.Schema

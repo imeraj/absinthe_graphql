@@ -29,6 +29,8 @@ defmodule PlateSlateWeb do
 
   def view do
     quote do
+      use Gettext, backend: PlateSlateWeb.Gettext
+
       use Phoenix.View,
         root: "lib/plate_slate_web/templates",
         namespace: PlateSlateWeb
