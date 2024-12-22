@@ -16,9 +16,8 @@ defmodule PlateSlate.Application do
       {Phoenix.PubSub, name: PlateSlate.PubSub},
       # Start the Endpoint (http/https)
       PlateSlateWeb.Endpoint,
-      # Start a worker by calling: PlateSlate.Worker.start_link(arg)
-      # {PlateSlate.Worker, arg}.
-      {Absinthe.Subscription, pubsub: PlateSlateWeb.Endpoint}
+      {Absinthe.Subscription, pubsub: PlateSlateWeb.Endpoint},
+      {Cachex, [:apq_cache, [limit: 100]]}
     ]
 
     # enable OpentelemetryAbsinthe. Configuration in config.exs

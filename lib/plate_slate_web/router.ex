@@ -47,7 +47,8 @@ defmodule PlateSlateWeb.Router do
       socket: PlateSlateWeb.UserSocket,
       analyze_complexity: true,
       max_complexity: 50,
-      pipeline: {__MODULE__, :pipeline}
+      pipeline: {__MODULE__, :pipeline},
+      document_providers: [PlateSlateWeb.Graphql.Apq, Absinthe.Plug.DocumentProvider.Default]
 
     forward "/graphiql",
             Absinthe.Plug.GraphiQL,
@@ -55,7 +56,11 @@ defmodule PlateSlateWeb.Router do
             socket: PlateSlateWeb.UserSocket,
             analyze_complexity: true,
             max_complexity: 50,
-            pipeline: {__MODULE__, :pipeline}
+            pipeline: {__MODULE__, :pipeline},
+            document_providers: [
+              PlateSlateWeb.Graphql.Apq,
+              Absinthe.Plug.DocumentProvider.Default
+            ]
   end
 
   defdelegate pipeline(config, options \\ []), to: PlateSlateWeb.Schema

@@ -57,7 +57,9 @@ defmodule PlateSlate.MixProject do
       {:pbkdf2_elixir, "~> 1.0"},
       {:dataloader, "~> 1.0"},
       {:absinthe_linter, "~> 0.1.0"},
-      {:sobelow, "~> 0.13", only: [:dev, :test], runtime: false}
+      {:sobelow, "~> 0.13", only: [:dev, :test], runtime: false},
+      {:apq, "~> 2.0"},
+      {:cachex, "~> 4.0"}
     ]
   end
 
