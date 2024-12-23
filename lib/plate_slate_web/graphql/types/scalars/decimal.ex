@@ -1,6 +1,6 @@
 ### Commented out in favour of Absinthe.Type.Custom
 
-#defmodule PlateSlateWeb.Graphql.Types.Scalars.Decimal do
+# defmodule PlateSlateWeb.Graphql.Types.Scalars.Decimal do
 #  @moduledoc false
 #
 #  use Absinthe.Schema.Notation
@@ -17,4 +17,4 @@
 #
 #    serialize(&to_string/1)
 #  end
-#end
+# end

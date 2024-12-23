@@ -1,6 +1,6 @@
 ### Commented out in favour of Absinthe.Type.Custom
 
-#defmodule PlateSlateWeb.Graphql.Types.Scalars.Date do
+# defmodule PlateSlateWeb.Graphql.Types.Scalars.Date do
 #  @moduledoc false
 #
 #  use Absinthe.Schema.Notation
@@ -15,4 +15,4 @@
 #
 #    serialize(&Date.to_iso8601/1)
 #  end
-#end
+# end

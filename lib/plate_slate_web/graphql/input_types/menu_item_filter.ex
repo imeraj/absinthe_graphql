@@ -3,7 +3,6 @@ defmodule PlateSlateWeb.Graphql.InputTypes.MenuItemFilter do
 
   use Absinthe.Schema.Notation
 
-
   @desc "Filtering options for the menu items list"
   input_object :menu_item_filter do
     @desc "Matching a name"
