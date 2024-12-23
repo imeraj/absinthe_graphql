@@ -38,7 +38,7 @@ defmodule PlateSlateWeb.Graphql.Queries.MenuQueryTest do
     }
   }
   """
-  @variables %{filter: %{"name" => "reu"}}
+  @variables %{filter: %{name: "reu"}}
   test "menuItems field returns menu items filtered by name", %{conn: conn} do
     response = post(conn, "/api", query: @query, variables: @variables)
 
@@ -60,7 +60,7 @@ defmodule PlateSlateWeb.Graphql.Queries.MenuQueryTest do
       }
     }
   """
-  @variables %{"order" => "DESC"}
+  @variables %{order: "DESC"}
   test "menuItems field returns menu items descending by name", %{conn: conn} do
     response = post(conn, "/api", query: @query, variables: @variables)
 
@@ -82,7 +82,7 @@ defmodule PlateSlateWeb.Graphql.Queries.MenuQueryTest do
     }
   }
   """
-  @variables %{filter: %{"tag" => "Vegetarian", "category" => "Sandwiches"}}
+  @variables %{filter: %{tag: "Vegetarian", category: "Sandwiches"}}
   test "menuItems field returns menuItems, filtering with a variable", %{conn: conn} do
     response = post(conn, "/api", query: @query, variables: @variables)
 
@@ -105,7 +105,7 @@ defmodule PlateSlateWeb.Graphql.Queries.MenuQueryTest do
     }
   }
   """
-  @variables %{filter: %{"addedBefore" => "2017-01-20"}}
+  @variables %{filter: %{addedBefore: "2017-01-20"}}
   test "menuItems filtered by custom scalar", %{conn: conn} do
     sides = PlateSlate.Repo.get_by!(PlateSlate.Menu.Category, name: "Sides")
 
@@ -140,7 +140,7 @@ defmodule PlateSlateWeb.Graphql.Queries.MenuQueryTest do
     }
   }
   """
-  @variables %{filter: %{"addedBefore" => "not-a-date"}}
+  @variables %{filter: %{addedBefore: "not-a-date"}}
   test "menuItems filtered by custom scalar with error", %{conn: conn} do
     response = post(conn, "/api", query: @query, variables: @variables)
 
