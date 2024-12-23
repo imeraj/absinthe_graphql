@@ -14,8 +14,11 @@ defmodule PlateSlateWeb.Schema do
   import_types(Absinthe.Phoenix.Types)
   @prototype_schema PlateSlateWeb.Graphql.Directives.FeatureFlagDirective
 
-  import_types(PlateSlateWeb.Graphql.Types.Scalars.Date)
-  import_types(PlateSlateWeb.Graphql.Types.Scalars.Decimal)
+  #  import_types(PlateSlateWeb.Graphql.Types.Scalars.Date)
+  #  import_types(PlateSlateWeb.Graphql.Types.Scalars.Decimal)
+
+  # import custom scalars from Absinthe
+  import_types(Absinthe.Type.Custom)
 
   import_types(PlateSlateWeb.Graphql.Types.Enums.SortOrderEnum)
   import_types(PlateSlateWeb.Graphql.Types.Enums.RoleEnum)

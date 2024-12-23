@@ -59,7 +59,8 @@ defmodule PlateSlate.MixProject do
       {:absinthe_linter, "~> 0.1.0"},
       {:sobelow, "~> 0.13", only: [:dev, :test], runtime: false},
       {:apq, "~> 2.0"},
-      {:cachex, "~> 4.0"}
+      {:cachex, "~> 4.0"},
+      {:decimal, "~> 2.3"}
     ]
   end
 
