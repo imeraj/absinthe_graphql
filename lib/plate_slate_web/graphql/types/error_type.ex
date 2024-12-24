@@ -3,7 +3,7 @@ defmodule PlateSlateWeb.Graphql.Types.ErrorType do
 
   @desc "mutation errors"
   object :errors do
-    field :errors, list_of(:error)
+    field :errors, non_null(list_of(:error))
   end
 
   @desc "mutation error type"
