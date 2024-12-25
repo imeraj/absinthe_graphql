@@ -3,6 +3,7 @@ defmodule PlateSlateWeb.Graphql.Middlewares.ChangesetErrors do
 
   @behaviour Absinthe.Middleware
 
+  @impl Absinthe.Middleware
   def call(resolution, _) do
     with %{errors: [%Ecto.Changeset{} = changeset]} <- resolution do
       %{resolution | errors: transform_errors(changeset)}

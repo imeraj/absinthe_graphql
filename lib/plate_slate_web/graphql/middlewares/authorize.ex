@@ -3,6 +3,7 @@ defmodule PlateSlateWeb.Graphql.Middlewares.Authorize do
 
   @behaviour Absinthe.Middleware
 
+  @impl Absinthe.Middleware
   def call(resolution, role) do
     with %{current_user: current_user} <- resolution.context,
          true <- correct_role?(current_user, role) do

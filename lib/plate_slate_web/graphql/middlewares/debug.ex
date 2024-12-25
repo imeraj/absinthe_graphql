@@ -3,6 +3,7 @@ defmodule PlateSlateWeb.Graphql.Middlewares.Debug do
 
   @behaviour Absinthe.Middleware
 
+  @impl Absinthe.Middleware
   def call(resolution, :start) do
     path = resolution |> Absinthe.Resolution.path() |> Enum.join(".")
 
