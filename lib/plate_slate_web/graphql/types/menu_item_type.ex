@@ -21,6 +21,9 @@ defmodule PlateSlateWeb.Graphql.Types.MenuItemType do
 
     field :added_on, :date, description: "Menu item added on date"
 
+    field :allergy_info, non_null(list_of(non_null(:allergy_info))),
+      description: "Allergy information"
+
     #    @doc """
     #    Async version
     #    """

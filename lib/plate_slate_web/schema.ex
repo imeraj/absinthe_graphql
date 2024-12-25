@@ -29,6 +29,7 @@ defmodule PlateSlateWeb.Schema do
   import_types(PlateSlateWeb.Graphql.Types.CategoryType)
   import_types(PlateSlateWeb.Graphql.Types.OrderType)
   import_types(PlateSlateWeb.Graphql.Types.SessionType)
+  import_types(PlateSlateWeb.Graphql.Types.AllergyInfoType)
 
   import_types(PlateSlateWeb.Graphql.Queries.MenuQuery)
   import_types(PlateSlateWeb.Graphql.Queries.SearchQuery)
@@ -68,9 +69,20 @@ defmodule PlateSlateWeb.Schema do
   @impl Absinthe.Schema
   def middleware(middleware, field, object) do
     middleware
+    #    |> apply(:allergy_info, field, object)
     |> apply(:errors, field, object)
     |> apply(:debug, field, object)
   end
+
+  # This is commented out as we are using embedded schema and keys are already atom. But
+  # it demos how to replace default middleware for a particular field
+
+  #  defp apply(middleware, :allergy_info, field, %{identifier: :allergy_info} = object) do
+  #    new_middleware = {Absinthe.Middleware.MapGet, to_string(field.identifier)}
+  #
+  #    middleware
+  #    |> Absinthe.Schema.replace_default(new_middleware, field, object)
+  #  end
 
   defp apply(middleware, :errors, _field, %{identifier: :mutation}) do
     middleware ++ [Middlewares.ChangesetErrors]
