@@ -68,13 +68,12 @@ defmodule PlateSlateWeb.Schema.Subscriptions.NewOrderTest do
     assert %{data: %{"placeOrder" => %{"id" => _}}} = reply
 
     # check to see if we got subscription data
-
-    assert_push "subscription:data", push
+    assert_push "subscription:data", data
 
     assert %{
              result: %{data: %{"newOrder" => %{"customerId" => _}}},
              subscriptionId: ^subscription_id
-           } = push
+           } = data
   end
 
   test "customers can't see other customer orders", %{socket: socket} do
@@ -104,6 +103,7 @@ defmodule PlateSlateWeb.Schema.Subscriptions.NewOrderTest do
 
     # customer2 places order
     customer2 = Fixtures.create_user(%{role: "customer"})
+
     # login as customer2
     ref =
       push_doc(socket, @login,

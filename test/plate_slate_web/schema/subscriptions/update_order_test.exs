@@ -42,11 +42,11 @@ defmodule PlateSlateWeb.Schema.Subscriptions.UpdateOrderTest do
         items: [%{menu_item_id: reuben.id, quantity: 2}]
       })
 
-    ref = push_doc(socket, @subscription, variables: %{"id" => order1.id})
-    assert_reply ref, :ok, %{subscriptionId: _subscription_ref1}
+    ref1 = push_doc(socket, @subscription, variables: %{"id" => order1.id})
+    assert_reply ref1, :ok, %{subscriptionId: _subscription_ref1}
 
-    ref = push_doc(socket, @subscription, variables: %{"id" => order2.id})
-    assert_reply ref, :ok, %{subscriptionId: subscription_ref2}
+    ref2 = push_doc(socket, @subscription, variables: %{"id" => order2.id})
+    assert_reply ref2, :ok, %{subscriptionId: subscription_ref2}
 
     ref = push_doc(socket, @mutation, variables: %{"id" => order2.id})
     assert_reply ref, :ok, reply
@@ -54,13 +54,13 @@ defmodule PlateSlateWeb.Schema.Subscriptions.UpdateOrderTest do
     refute reply[:errors]
     assert %{data: %{"readyOrder" => %{"state" => "ready"}}} = reply
 
-    assert_push "subscription:data", push
+    assert_push "subscription:data", data
 
     expected = %{
       result: %{data: %{"updateOrder" => %{"state" => "ready"}}},
       subscriptionId: subscription_ref2
     }
 
-    assert expected == push
+    assert expected == data
   end
 end
