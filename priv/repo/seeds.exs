@@ -11,4 +11,4 @@
 # and so on) as they will fail if something goes wrong.
 alias PlateSlate.Seeds
 
-Seeds.run()
+if Mix.env() == :dev, do: Seeds.run()

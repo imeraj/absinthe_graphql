@@ -13,7 +13,7 @@ defmodule PlateSlateWeb.Plugs.Context do
 
   def build_context(conn) do
     with ["Bearer " <> token] <- get_req_header(conn, "authorization"),
-         {:ok, data} <- PlateSlateWeb.Authentication.verify(token),
+         {:ok, data} when not is_nil(data) <- PlateSlateWeb.Authentication.verify(token),
          # check if user actually exists
          %{} = user <- get_user(data) do
       %{current_user: user}

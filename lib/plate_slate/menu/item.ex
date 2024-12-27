@@ -27,7 +27,7 @@ defmodule PlateSlate.Menu.Item do
     |> cast(attrs, [:name, :description, :price, :category_id])
     |> cast_embed(:allergy_info)
     |> validate_required([:name, :price, :category_id])
+    |> unique_constraint(:name, name: "items_name_index")
     |> foreign_key_constraint(:category, name: "items_category_id_fkey")
-    |> unique_constraint(:name)
   end
 end
