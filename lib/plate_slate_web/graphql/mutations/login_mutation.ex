@@ -13,6 +13,7 @@ defmodule PlateSlateWeb.Graphql.Mutations.LoginMutation do
       arg(:input, non_null(:login_input))
       resolve(&LoginResolver.login/3)
 
+      # This is to make subscription tests pass using persistent websocket
       middleware(fn res, _ ->
         with %{value: %{user: user}} <- res do
           %{res | context: Map.put(res.context, :current_user, user)}
