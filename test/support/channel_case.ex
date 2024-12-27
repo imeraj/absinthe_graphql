@@ -26,13 +26,7 @@ defmodule PlateSlateWeb.ChannelCase do
     end
   end
 
-  setup tags do
+  setup do
     :ok = Ecto.Adapters.SQL.Sandbox.checkout(PlateSlate.Repo)
-
-    if !tags[:async] do
-      Ecto.Adapters.SQL.Sandbox.mode(PlateSlate.Repo, {:shared, self()})
-    end
-
-    :ok
   end
 end

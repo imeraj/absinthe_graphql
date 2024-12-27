@@ -31,8 +31,8 @@ defmodule PlateSlateWeb.ConnCase do
     end
   end
 
-  setup tags do
-    PlateSlate.DataCase.setup_sandbox(tags)
+  setup _tags do
+    :ok = Ecto.Adapters.SQL.Sandbox.checkout(PlateSlate.Repo)
     {:ok, conn: Phoenix.ConnTest.build_conn()}
   end
 end

@@ -1,5 +1,5 @@
 defmodule PlateSlateWeb.Schema.Subscriptions.UpdateOrderTest do
-  use PlateSlateWeb.SubscriptionCase
+  use PlateSlateWeb.SubscriptionCase, async: true
 
   setup do
     PlateSlate.Seeds.run()

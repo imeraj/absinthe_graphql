@@ -1,5 +1,5 @@
 defmodule PlateSlateWeb.Schema.Subscriptions.NewOrderTest do
-  use PlateSlateWeb.SubscriptionCase
+  use PlateSlateWeb.SubscriptionCase, async: true
 
   alias PlateSlate.Fixtures
 
